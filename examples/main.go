@@ -1,10 +1,12 @@
-package orm_test
+package main
 
 import (
 	"context"
+	"fmt"
+	"time"
+
 	"github.com/kiamars-mirzaee/GoMongoquent/orm"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 type User struct {
@@ -20,21 +22,22 @@ func (u *User) CollectionName() string {
 func (u *User) PrimaryKey() string {
 	return "_id"
 }
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
 
-func TestUserRepository_CRUD(t *testing.T) {
-	ctx := context.Background()
-	db, _ := orm.Connect(ctx, "mongodb://localhost:27017", "test_db")
+	db, err := orm.Connect(ctx, "mongodb://localhost:27017", "test_db")
+	if err != nil {
+		panic(err)
+	}
 
 	repo := orm.NewRepository(db, &User{})
 
 	user := &User{Name: "Alice", Email: "alice@test.com"}
-	err := repo.Create(ctx, user)
-	assert.NoError(t, err)
+	err = repo.Create(ctx, user)
+	assert.NoError(nil, err) // in tests, replace nil with *testing.T
 
 	found, err := repo.Query(ctx).Where("email", "alice@test.com").First()
-	assert.NoError(t, err)
-	assert.Equal(t, "Alice", found.Name)
-
-	err = repo.Delete(ctx, user.ID)
-	assert.NoError(t, err)
+	assert.NoError(nil, err)
+	fmt.Println(found.Name) // Output: Alice
 }

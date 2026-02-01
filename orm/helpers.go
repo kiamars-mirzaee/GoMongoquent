@@ -1,3 +1,10 @@
+package orm
+
+import (
+	"reflect"
+	"time"
+)
+
 // ---------- Helpers ----------
 
 func setTimestamps[T any](model *T, creating bool) {

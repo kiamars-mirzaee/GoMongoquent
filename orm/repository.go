@@ -1,3 +1,13 @@
+package orm
+
+import (
+	"context"
+	"errors"
+	"time"
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 // ---------- Repository (Eloquent-style) ----------
 
@@ -14,7 +24,7 @@ func (r *Repository[T]) Query(ctx context.Context) *Query[T] {
 	return NewQuery(ctx, r.db, r.model)
 }
 
-func (r *Repository[T]) Create(ctx context.Context, m *T) error {
+func (r *Repository[T]) Create(ctx context.Context, m T) error {
 	col := r.db.Collection(r.model)
 
 	setTimestamps(m, true)
@@ -41,4 +51,3 @@ func (r *Repository[T]) Delete(ctx context.Context, id primitive.ObjectID) error
 	_, err := col.DeleteOne(ctx, bson.M{"_id": id})
 	return err
 }
-
