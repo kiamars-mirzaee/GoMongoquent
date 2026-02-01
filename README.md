@@ -39,12 +39,6 @@ go get [github.com/kiamars-mirzaee/GoMongoquent](https://github.com/kiamars-mirz
 
 ---
 
-## 📦 Installation
-
-```bash
-go get github.com/yourusername/gomongoquent
-```
-
 ---
 
 ## 🚀 Quick Start
