@@ -179,6 +179,31 @@ Aggregation Pipelines: Used internally for performant joins.
 This structure follows **clean architecture principles** and avoids the ActiveRecord anti-pattern while preserving Eloquent’s DX.
 
 ---
+## Design Trade-offs
+❌ Why not Active Record?
+
+* Hard to test
+
+* Implicit DB calls
+
+* Tight coupling
+
+❌ Why not full reflection-based ORM?
+
+* Poor performance
+
+* Hard to debug
+
+* Violates Go philosophy
+
+✅ What we chose instead
+
+* Repository pattern
+
+* Explicit relations
+* Fluent but predictable API
+
+---
 
 ## 🧪 Testing Strategy
 
