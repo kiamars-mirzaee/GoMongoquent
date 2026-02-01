@@ -179,6 +179,3 @@ MIT
 * Or use it as inspiration for your own internal tooling
 
 > Built by a Go dev who secretly misses Laravel 😄
-# GoMongoquent
-# GoMongoquent
-# GoMongoquent
