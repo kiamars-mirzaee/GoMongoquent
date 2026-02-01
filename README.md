@@ -26,6 +26,7 @@ A lightweight, type-safe, and developer-friendly Object-Relational Mapper (ORM) 
 ```bash
 go get [github.com/kiamars-mirzaee/GoMongoquent](https://github.com/kiamars-mirzaee/GoMongoquent)
 ---
+```
 
 ## ✨ Features
 
